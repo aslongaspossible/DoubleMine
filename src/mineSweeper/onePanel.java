@@ -10,6 +10,11 @@ import javax.swing.*;
  *
  * @author Luddite
  */
-public class onePanel extends JFrame{
+public class onePanel extends JPanel{
+    boolean[][] ifOpen;
+    int column,row;
+    int size;
+    
+    
     
 }

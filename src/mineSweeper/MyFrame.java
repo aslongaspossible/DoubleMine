@@ -6,6 +6,9 @@
 package mineSweeper;
 
 import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
 
 /**
  *
@@ -13,7 +16,18 @@ import javax.swing.*;
  */
 public class MyFrame extends JFrame{
     int column,row;
+    int size;
+    JMenuBar menuBar;
     
-    public 
     
+    
+    public MyFrame(){
+        initComponents();
+    }
+    
+     private void initComponents() {
+        Container contentPane=getContentPane();
+        contentPane.setLayout(mgr);
+
+    }    
 }
