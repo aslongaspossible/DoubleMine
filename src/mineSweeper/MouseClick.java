@@ -24,8 +24,11 @@ public class MouseClick extends MouseAdapter{
         random=new Random();
         row=minePanel.row;
         column=minePanel.column;
+        stackPoint=new Stack<MyPoint>();
+        minePanel.addMouseListener(this);
     }
     
+    @SuppressWarnings("empty-statement")
     public void mouseReleased(MouseEvent e){
         int clickX=e.getX()/minePanel.squareSize;
         int clickY=e.getY()/minePanel.squareSize;
@@ -36,12 +39,12 @@ public class MouseClick extends MouseAdapter{
             int order=minePanel.order;
             for(int r=0;r<row;++r){
                 for(int c=0;c<column;++c){
-                    if(r!=clickX&c!=clickY){
+                    if(r!=clickY || c!=clickX){
                         if(random.nextInt(area)<booms){
                             minePanel.ifBoom[r][c]=true;
                             for(int y=r-order;y<=r+order;++y){
                                 for(int x=c-order;x<=c+order;++x){
-                                    if(x>0&&y>0&&x<column&&y<column){
+                                    if(x>=0&&y>=0&&x<column&&y<row){
                                         ++minePanel.count[y][x];
                                     }
                                 }
@@ -50,10 +53,23 @@ public class MouseClick extends MouseAdapter{
                         }
                         --area;
                     }
+                    System.out.print(minePanel.ifBoom[r][c]+"\t");
                 }
+                System.out.println();
             }
         }
-        stackPoint.push(new MyPoint(clickX,clickY));
+        if(minePanel.ifBoom[clickY][clickX]){
+            for(int r=0;r<minePanel.row;++r){
+                for(int c=0;c<minePanel.column;++c){
+                    if(minePanel.ifBoom[r][c]){
+                        minePanel.ifOpen[r][c]=true;
+                    }
+                }
+            }
+            System.out.println("lose!");
+        }else{
+            stackPoint.push(new MyPoint(clickX,clickY));
+        }
         MyPoint thisPoint;
         int thisx,thisy;
         while(!stackPoint.empty()){
@@ -63,16 +79,24 @@ public class MouseClick extends MouseAdapter{
             if(!minePanel.ifBoom[thisy][thisx]){
                 minePanel.ifOpen[thisy][thisx]=true;
                 if(thisy>0){
-                    stackPoint.push(new MyPoint(thisx,thisy-1));
+                    if(minePanel.ifOpen[thisy-1][thisx]!=true){
+                        stackPoint.push(new MyPoint(thisx,thisy-1));
+                    }
                 }
                 if(thisy<row-1){
-                    stackPoint.push(new MyPoint(thisx,thisy+1));
+                    if(minePanel.ifOpen[thisy+1][thisx]!=true){
+                        stackPoint.push(new MyPoint(thisx,thisy+1));
+                    }
                 }
                  if(thisx>0){
-                    stackPoint.push(new MyPoint(thisx-1,thisy));
+                    if(minePanel.ifOpen[thisy][thisx-1]!=true){
+                        stackPoint.push(new MyPoint(thisx-1,thisy));
+                    }
                 }
                 if(thisx<column-1){
-                    stackPoint.push(new MyPoint(thisx+1,thisy));
+                    if(minePanel.ifOpen[thisy][thisx+1]!=true){
+                        stackPoint.push(new MyPoint(thisx+1,thisy));
+                    }
                 }
             }
         }

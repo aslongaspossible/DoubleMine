@@ -23,6 +23,7 @@ public class MyFrame extends JFrame{
     JMenu gameMenu;
     JMenuItem newGame;
     JMenuItem setGame;
+    MouseClick mouseClick;
     
     public MyFrame(){
         initComponents();
@@ -32,10 +33,10 @@ public class MyFrame extends JFrame{
         Container contentPane=getContentPane();
         int addWidth=16;
         int addHeight=62;
-        column=40;
-        row=20;
-        size=20;
-        booms=200;
+        column=20;
+        row=10;
+        size=50;//can't be smaller than 5 because of line 39 in MinePanel
+        booms=100;
         setSize(column*size+addWidth,row*size+addHeight);
         
         menuBar=new JMenuBar();
@@ -51,6 +52,10 @@ public class MyFrame extends JFrame{
         minePanel.setSize(column*size,row*size);
         minePanel.initPanel(column,row,booms,size,2);
         contentPane.add(minePanel);
+        
+        mouseClick = new MouseClick();
+        mouseClick.myInit(minePanel);
+        
     }
      
      
