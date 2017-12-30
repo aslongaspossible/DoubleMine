@@ -38,7 +38,7 @@ public class MyFrame extends JFrame{
         column=20;
         row=10;
         size=50;//can't be smaller than 5 because of line 39 in MinePanel
-        booms=100;
+        booms=30;
         setSize(column*size+addWidth,row*size+addHeight);
         
         menuBar=new JMenuBar();

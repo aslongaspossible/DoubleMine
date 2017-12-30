@@ -18,6 +18,7 @@ public class DIYFrame extends javax.swing.JFrame {
      */
     public DIYFrame() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -141,6 +142,7 @@ public class DIYFrame extends javax.swing.JFrame {
         myFrame.minePanel.initPanel(newColumn,newRow,Integer.parseInt(booms.getText()),
                 size,Integer.parseInt(order.getText()));
         myFrame.minePanel.repaint();
+        this.dispose();
     }//GEN-LAST:event_newGameMouseClicked
 
     /**
@@ -185,7 +187,6 @@ public class DIYFrame extends javax.swing.JFrame {
         this.booms.setText(myFrame.minePanel.booms+"");
         this.order.setText(myFrame.minePanel.order+"");
         this.myFrame=myFrame;
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
