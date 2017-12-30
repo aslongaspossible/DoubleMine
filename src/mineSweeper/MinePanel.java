@@ -8,13 +8,14 @@ package mineSweeper;
 import javax.swing.*;
 import java.lang.*;
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  *
  * @author Luddite
  */
 
-public class MinePanel extends JPanel{
+public class MinePanel extends JPanel implements Serializable{
     //<editor-fold>
     boolean[][] ifOpen;
     boolean[][] ifBoom;
@@ -86,7 +87,5 @@ public class MinePanel extends JPanel{
             }
         }
     }
-    
-    
-    
+     
 }

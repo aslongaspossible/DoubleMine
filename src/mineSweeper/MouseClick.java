@@ -13,18 +13,25 @@ import java.util.Stack;
  *
  * @author Admin
  */
+
+class MyPoint {//<editor-fold>
+    int x,y;
+    public MyPoint(int x,int y){
+        this.x=x;
+        this.y=y;
+    }
+//</editor-fold>
+}
+
 public class MouseClick extends MouseAdapter{
     MinePanel minePanel;
     Random random;
     Stack<MyPoint> stackPoint;
-    int row,column;
     boolean ifDown;
     
     public void myInit(MinePanel minePanel){
         this.minePanel=minePanel;
         random=new Random();
-        row=minePanel.row;
-        column=minePanel.column;
         stackPoint=new Stack<MyPoint>();
         
         minePanel.addMouseListener(this);
@@ -34,7 +41,8 @@ public class MouseClick extends MouseAdapter{
     public void mouseReleased(MouseEvent e){
         int clickX=e.getX()/minePanel.squareSize;
         int clickY=e.getY()/minePanel.squareSize;
-        
+        int row=minePanel.row;
+        int column=minePanel.column;
         if(e.getButton()==e.BUTTON1){//<editor-fold>
             if(minePanel.isFirst){//<editor-fold>
                 minePanel.isFirst=false;

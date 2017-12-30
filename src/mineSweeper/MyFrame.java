@@ -18,21 +18,23 @@ public class MyFrame extends JFrame{
     int column,row;
     int size;
     int booms;
+    int addWidth,addHeight;
     JMenuBar menuBar;
     MinePanel minePanel;
     JMenu gameMenu;
     JMenuItem newGame;
     JMenuItem setGame;
     MouseClick mouseClick;
+    GameSetting settingListen;
     
     public MyFrame(){
-        initComponents();
+        myInit();
     }
     
-     private void initComponents() {
+     private void myInit() {
         Container contentPane=getContentPane();
-        int addWidth=16;
-        int addHeight=62;
+        addWidth=16;
+        addHeight=62;
         column=20;
         row=10;
         size=50;//can't be smaller than 5 because of line 39 in MinePanel
@@ -43,6 +45,7 @@ public class MyFrame extends JFrame{
         gameMenu=new JMenu("开始");
         newGame=new JMenuItem("新游戏");
         setGame=new JMenuItem("自定义");
+        settingListen=new GameSetting();
         gameMenu.add(newGame);
         gameMenu.add(setGame);
         menuBar.add(gameMenu);
@@ -55,6 +58,9 @@ public class MyFrame extends JFrame{
         
         mouseClick = new MouseClick();
         mouseClick.myInit(minePanel);
+        
+        settingListen.myInit(this);
+        setGame.addActionListener(settingListen);
         
     }
      
