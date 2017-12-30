@@ -90,15 +90,13 @@ public class MouseClick extends MouseAdapter{
                 thisPoint=stackPoint.pop();
                 thisx=thisPoint.x;
                 thisy=thisPoint.y;
-                if(!minePanel.ifBoom[thisy][thisx]){
-                    minePanel.ifOpen[thisy][thisx]=true;
-                    if(minePanel.count[thisy][thisx]==0){
-                        for(int y=thisy-1;y<=thisy+1;++y){
-                            for(int x=thisx-1;x<=thisx+1;++x){
-                                if(y>=0 && x>=0 && x<column && y<row){
-                                    if(!minePanel.ifOpen[y][x]){
-                                        stackPoint.push(new MyPoint(x,y));
-                                    }
+                minePanel.ifOpen[thisy][thisx]=true;
+                if(minePanel.count[thisy][thisx]==0){
+                    for(int y=thisy-1;y<=thisy+1;++y){
+                        for(int x=thisx-1;x<=thisx+1;++x){
+                            if(y>=0 && x>=0 && x<column && y<row){
+                                if(!minePanel.ifOpen[y][x]){
+                                    stackPoint.push(new MyPoint(x,y));
                                 }
                             }
                         }
