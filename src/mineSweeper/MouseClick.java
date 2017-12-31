@@ -82,7 +82,8 @@ public class MouseClick extends MouseAdapter{
                             }
                         }
                     }
-                    System.out.println("lose!");
+                    minePanel.repaint();
+                    JOptionPane.showMessageDialog(null, "You lose!");
                 }else{
                     stackPoint.push(new MyPoint(clickX,clickY));
                 }
@@ -93,8 +94,14 @@ public class MouseClick extends MouseAdapter{
                 thisPoint=stackPoint.pop();
                 thisx=thisPoint.x;
                 thisy=thisPoint.y;
-                minePanel.ifOpen[thisy][thisx]=true;
-                if(minePanel.count[thisy][thisx]==0){
+                if(!minePanel.ifOpen[thisy][thisx]){
+                    minePanel.ifOpen[thisy][thisx]=true;
+                    --minePanel.unopenArea;
+                }
+                if(minePanel.unopenArea==minePanel.booms){
+                    minePanel.repaint();
+                    JOptionPane.showMessageDialog(null, "You win!");
+                }else if(minePanel.count[thisy][thisx]==0){
                     for(int y=thisy-1;y<=thisy+1;++y){
                         for(int x=thisx-1;x<=thisx+1;++x){
                             if(y>=0 && x>=0 && x<column && y<row){

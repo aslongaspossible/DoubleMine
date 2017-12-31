@@ -41,7 +41,7 @@ public class MyFrame extends JFrame{
         Container contentPane=getContentPane();
         addWidth=16;
         addHeight=62;
-        column=20;
+        column=15;
         row=10;
         size=50;//can't be smaller than 5 because of line 39 in MinePanel
         booms=30;
@@ -60,7 +60,7 @@ public class MyFrame extends JFrame{
         
         minePanel=new MinePanel();
         minePanel.setSize(column*size,row*size);
-        minePanel.initPanel(column,row,booms,size,2);
+        minePanel.initPanel(column,row,booms,size,1);
         contentPane.add(minePanel);
         
         mouseClick = new MouseClick();
