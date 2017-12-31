@@ -24,6 +24,7 @@ public class MinePanel extends JPanel implements Serializable{
     int booms;//雷的数目
     int order;//近邻级数
     int unopenArea;//未打开的格子数
+    String time;
     
     int squareSize;//格子边长
     int addHeight;//竖直偏移量
@@ -37,6 +38,7 @@ public class MinePanel extends JPanel implements Serializable{
         this.booms=booms;
         this.squareSize=size;
         this.order=order;
+        time="00:00:00";
         unopenArea=column*row;
         addHeight=40;
         black = new Color(70,70,70);
@@ -96,6 +98,7 @@ public class MinePanel extends JPanel implements Serializable{
         booms=savedPanel.booms;
         order=savedPanel.order;
         unopenArea=savedPanel.unopenArea;
+        time=savedPanel.time;
         
         ifOpen=savedPanel.ifOpen;
         ifBoom=savedPanel.ifBoom;

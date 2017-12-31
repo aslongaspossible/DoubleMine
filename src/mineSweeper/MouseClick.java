@@ -86,6 +86,7 @@ public class MouseClick extends MouseAdapter{
                         }
                     }
                     minePanel.repaint();
+                    myFrame.timeTrigger.stop();
                     JOptionPane.showMessageDialog(null, "You lose!");
                 }else{
                     stackPoint.push(new MyPoint(clickX,clickY));
@@ -103,6 +104,7 @@ public class MouseClick extends MouseAdapter{
                 }
                 if(minePanel.unopenArea==minePanel.booms){
                     minePanel.repaint();
+                    myFrame.timeTrigger.stop();
                     JOptionPane.showMessageDialog(null, "You win!");
                 }else if(minePanel.count[thisy][thisx]==0){
                     for(int y=thisy-1;y<=thisy+1;++y){

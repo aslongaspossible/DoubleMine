@@ -28,6 +28,7 @@ public class GameSave implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e){
+        myFrame.timeTrigger.stop();
         int returnVal=chooser.showSaveDialog(null);
         if(returnVal==JFileChooser.APPROVE_OPTION){
             try{
@@ -41,5 +42,6 @@ public class GameSave implements ActionListener{
                 System.out.println(exp);
             }
         }
+        myFrame.timeTrigger.start();
     }
 }

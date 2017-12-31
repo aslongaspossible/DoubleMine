@@ -40,7 +40,8 @@ class MyTimer implements ActionListener{//<editor-fold>
             date=sdf.parse(myFrame.timeLabel.getText());
             calendar.setTime(date);
             calendar.add(Calendar.SECOND, 1);
-            myFrame.timeLabel.setText(sdf.format(calendar.getTime()));
+            myFrame.minePanel.time=sdf.format(calendar.getTime());
+            myFrame.timeLabel.setText(myFrame.minePanel.time);
         }catch(ParseException exp){
             System.out.println(exp);
         }

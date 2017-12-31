@@ -141,6 +141,8 @@ public class DIYFrame extends javax.swing.JFrame {
         myFrame.minePanel.setSize(newColumn*size,newRow*size);
         myFrame.minePanel.initPanel(newColumn,newRow,Integer.parseInt(booms.getText()),
                 size,Integer.parseInt(order.getText()));
+        myFrame.timeTrigger.stop();
+        myFrame.timeLabel.setText("00:00:00");
         myFrame.minePanel.repaint();
         this.dispose();
     }//GEN-LAST:event_newGameMouseClicked

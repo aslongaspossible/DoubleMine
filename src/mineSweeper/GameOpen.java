@@ -31,6 +31,7 @@ public class GameOpen  implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e){
+        myFrame.timeTrigger.stop();
         int returnVal=chooser.showOpenDialog(null);
         if(returnVal==JFileChooser.APPROVE_OPTION){
             try{
@@ -40,6 +41,7 @@ public class GameOpen  implements ActionListener{
                 myFrame.minePanel.myReset(savedPanel);
                 myFrame.myResize(myFrame.minePanel.column,myFrame.minePanel.row);
                 myFrame.minePanel.repaint();
+                myFrame.timeLabel.setText(myFrame.minePanel.time);
                 s.close();
             }catch(FileNotFoundException exp){
                 System.out.println(exp);
@@ -49,6 +51,7 @@ public class GameOpen  implements ActionListener{
                 System.out.println(exp);
             }
         }
+        myFrame.timeTrigger.start();
     }
     
 }
