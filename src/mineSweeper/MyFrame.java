@@ -8,13 +8,48 @@ package mineSweeper;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 
 /**
  *
  * @author Luddite
  */
+
+class MyTimer implements ActionListener{//<editor-fold>
+    MyFrame myFrame;
+    Calendar calendar;
+    Date date;
+    SimpleDateFormat sdf;
+    
+    public MyTimer(){
+        super();
+        calendar=Calendar.getInstance();
+        sdf=new SimpleDateFormat("HH:mm:ss");
+    }
+    
+    public void myInit(MyFrame myFrame){
+        this.myFrame=myFrame;
+    }
+    
+    public void actionPerformed(ActionEvent e){
+        try{
+            date=sdf.parse(myFrame.timeLabel.getText());
+            calendar.setTime(date);
+            calendar.add(Calendar.SECOND, 1);
+            myFrame.timeLabel.setText(sdf.format(calendar.getTime()));
+        }catch(ParseException exp){
+            System.out.println(exp);
+        }
+    }
+//</editor-fold>
+}
+
 public class MyFrame extends JFrame{
+    //<editor-fold>
     int column,row;
     int size;
     int booms;
@@ -27,10 +62,15 @@ public class MyFrame extends JFrame{
     JMenuItem saveGame;
     JMenuItem openGame;
     
+    JLabel timeLabel;
+    Timer timeTrigger;
+    
     MouseClick mouseClick;
     GameSetting settingListen;
     GameSave saveListen;
     GameOpen openListen;
+    MyTimer timeListen;
+    //</editor-fold>
     
     public MyFrame(){
         super();
@@ -64,7 +104,11 @@ public class MyFrame extends JFrame{
         contentPane.add(minePanel);
         
         mouseClick = new MouseClick();
-        mouseClick.myInit(minePanel);
+        mouseClick.myInit(this);
+        
+        timeLabel=new JLabel();
+        timeLabel.setText("00:00:00");
+        menuBar.add(timeLabel);
         
         settingListen=new GameSetting();
         settingListen.myInit(this);
@@ -77,6 +121,10 @@ public class MyFrame extends JFrame{
         openListen=new GameOpen();
         openListen.myInit(this);
         openGame.addActionListener(openListen);
+        
+        timeListen=new MyTimer();
+        timeListen.myInit(this);
+        timeTrigger=new Timer(1000,timeListen);
     }
      
     public void myResize(int column,int row){

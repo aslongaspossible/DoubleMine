@@ -25,6 +25,7 @@ class MyPoint {//<editor-fold>
 
 public class MouseClick extends MouseAdapter{
     MinePanel minePanel;
+    MyFrame myFrame;
     Random random;
     Stack<MyPoint> stackPoint;
     //boolean ifDown;
@@ -35,8 +36,9 @@ public class MouseClick extends MouseAdapter{
         stackPoint=new Stack<MyPoint>();
     }
     
-    public void myInit(MinePanel minePanel){
-        this.minePanel=minePanel;
+    public void myInit(MyFrame myFrame){
+        this.myFrame=myFrame;
+        minePanel=myFrame.minePanel;
         minePanel.addMouseListener(this);
     }
     
@@ -49,6 +51,7 @@ public class MouseClick extends MouseAdapter{
         if(e.getButton()==e.BUTTON1){//<editor-fold>
             if(minePanel.isFirst){//<editor-fold>
                 minePanel.isFirst=false;
+                myFrame.timeTrigger.start();
                 int booms=minePanel.booms;
                 int area=row*column-1;
                 int order=minePanel.order;
