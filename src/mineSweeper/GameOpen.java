@@ -36,9 +36,9 @@ public class GameOpen  implements ActionListener{
             try{
                 ObjectInputStream s=new ObjectInputStream(new FileInputStream(
                         initDirection+"/"+chooser.getSelectedFile().getName()));
-                myFrame.minePanel=(MinePanel)s.readObject();
+                MinePanel savedPanel=(MinePanel)s.readObject();
+                myFrame.minePanel.myReset(savedPanel);
                 myFrame.myResize(myFrame.minePanel.column,myFrame.minePanel.row);
-                myFrame.mouseClick.myInit(myFrame.minePanel);
                 myFrame.minePanel.repaint();
                 s.close();
             }catch(FileNotFoundException exp){
