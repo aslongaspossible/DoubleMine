@@ -21,7 +21,7 @@ public class MinePanel extends JPanel implements Serializable{
     int[][] count;//近邻的雷数
     boolean isFirst;//是否是第一次点击
     int column,row;//行列
-    int booms;//雷的数目
+    int booms,flags;//雷、旗的数目
     int order;//近邻级数
     int unopenArea;//未打开的格子数
     String time;
@@ -32,25 +32,39 @@ public class MinePanel extends JPanel implements Serializable{
     Font myFont;//预设字体
     //</editor-fold>
     
-    public void initPanel(int column,int row,int booms,int size,int order){
-        this.column=column;
-        this.row=row;
-        this.booms=booms;
-        this.squareSize=size;
-        this.order=order;
-        time="00:00:00";
-        unopenArea=column*row;
-        addHeight=40;
+    public MinePanel(){
+        super();
         black = new Color(70,70,70);
         white=new Color(240,240,240);
         yellow=new Color(240,240,100);
         green=new Color(50,240,100);
+        addHeight=40;
+    }
+    
+    public void initPanel(int column,int row,int booms,int size,int order){
+        this.column=column;
+        this.row=row;
+        this.squareSize=size;
+        this.order=order;
+        
+        unopenArea=column*row;
+        if(booms<unopenArea){
+            this.booms=booms;
+        }else{
+            this.booms=unopenArea-1;
+        }
+        
         myFont=new Font("SanSerif",Font.BOLD,size*2/3);
+        
+        time="00:00:00";
+        flags=0;
         isFirst=true;
+        
         ifOpen=new boolean[row][];
-        count=new int[row][];
         ifBoom=new boolean[row][];
         ifFlag=new boolean[row][];
+        count=new int[row][];
+        
         for(int r=0;r<row;++r){
             ifOpen[r]=new boolean[column];
             count[r]=new int[column];
@@ -95,15 +109,21 @@ public class MinePanel extends JPanel implements Serializable{
         isFirst=savedPanel.isFirst;
         column=savedPanel.column;
         row=savedPanel.row;
-        booms=savedPanel.booms;
         order=savedPanel.order;
+        
+        booms=savedPanel.booms;
         unopenArea=savedPanel.unopenArea;
+        flags=savedPanel.flags;
+        
         time=savedPanel.time;
         
         ifOpen=savedPanel.ifOpen;
         ifBoom=savedPanel.ifBoom;
         ifFlag=savedPanel.ifFlag;
         count=savedPanel.count;
+        
+        squareSize=savedPanel.squareSize;
+        myFont=savedPanel.myFont;
     }
      
 }

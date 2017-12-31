@@ -121,7 +121,14 @@ public class MouseClick extends MouseAdapter{
             //</editor-fold>
         }else if(e.getButton()==e.BUTTON3){
             if(!minePanel.ifOpen[clickY][clickX]){
-                minePanel.ifFlag[clickY][clickX]=!minePanel.ifFlag[clickY][clickX];
+                if(minePanel.ifFlag[clickY][clickX]){
+                    minePanel.ifFlag[clickY][clickX]=false;
+                    --minePanel.flags;
+                }else{
+                    minePanel.ifFlag[clickY][clickX]=true;
+                    ++minePanel.flags;
+                }
+                myFrame.boomsRemain.setText("还剩"+(minePanel.booms-minePanel.flags)+"个雷");
             }
         }
         minePanel.repaint();

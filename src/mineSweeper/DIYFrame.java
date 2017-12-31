@@ -143,6 +143,8 @@ public class DIYFrame extends javax.swing.JFrame {
                 size,Integer.parseInt(order.getText()));
         myFrame.timeTrigger.stop();
         myFrame.timeLabel.setText("00:00:00");
+        myFrame.boomsRemain.setText("还剩"+
+                (myFrame.minePanel.booms-myFrame.minePanel.flags)+"个雷");
         myFrame.minePanel.repaint();
         this.dispose();
     }//GEN-LAST:event_newGameMouseClicked

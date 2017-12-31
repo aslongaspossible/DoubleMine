@@ -65,6 +65,8 @@ public class MyFrame extends JFrame{
     
     JLabel timeLabel;
     Timer timeTrigger;
+    JLabel boomsRemain;
+    
     
     MouseClick mouseClick;
     GameSetting settingListen;
@@ -111,6 +113,10 @@ public class MyFrame extends JFrame{
         timeLabel.setText("00:00:00");
         menuBar.add(timeLabel);
         
+        boomsRemain=new JLabel();
+        boomsRemain.setText("还剩"+(minePanel.booms-minePanel.flags)+"个雷");
+        menuBar.add(boomsRemain);
+        
         settingListen=new GameSetting();
         settingListen.myInit(this);
         setGame.addActionListener(settingListen);
@@ -128,9 +134,10 @@ public class MyFrame extends JFrame{
         timeTrigger=new Timer(1000,timeListen);
     }
      
-    public void myResize(int column,int row){
+    public void myResize(int column,int row,int size){
         this.column=column;
         this.row=row;
+        this.size=size;
         setSize(column*size+addWidth,row*size+addHeight);
     }
      

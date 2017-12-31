@@ -39,9 +39,12 @@ public class GameOpen  implements ActionListener{
                         initDirection+"/"+chooser.getSelectedFile().getName()));
                 MinePanel savedPanel=(MinePanel)s.readObject();
                 myFrame.minePanel.myReset(savedPanel);
-                myFrame.myResize(myFrame.minePanel.column,myFrame.minePanel.row);
+                myFrame.myResize(myFrame.minePanel.column,
+                        myFrame.minePanel.row,myFrame.minePanel.squareSize);
                 myFrame.minePanel.repaint();
                 myFrame.timeLabel.setText(myFrame.minePanel.time);
+                myFrame.boomsRemain.setText("还剩"+
+                        (myFrame.minePanel.booms-myFrame.minePanel.flags)+"个雷");
                 s.close();
             }catch(FileNotFoundException exp){
                 System.out.println(exp);
