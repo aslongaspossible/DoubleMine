@@ -27,13 +27,16 @@ public class MouseClick extends MouseAdapter{
     MinePanel minePanel;
     Random random;
     Stack<MyPoint> stackPoint;
-    boolean ifDown;
+    //boolean ifDown;
+    
+    public MouseClick(){
+        super();
+        random=new Random();
+        stackPoint=new Stack<MyPoint>();
+    }
     
     public void myInit(MinePanel minePanel){
         this.minePanel=minePanel;
-        random=new Random();
-        stackPoint=new Stack<MyPoint>();
-        
         minePanel.addMouseListener(this);
     }
     

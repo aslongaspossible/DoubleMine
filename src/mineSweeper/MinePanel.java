@@ -17,17 +17,15 @@ import java.io.Serializable;
 
 public class MinePanel extends JPanel implements Serializable{
     //<editor-fold>
-    boolean[][] ifOpen;
-    boolean[][] ifBoom;
-    boolean[][] ifFlag;
-    boolean isFirst;
-    int column,row;
-    int squareSize;
-    int booms;
-    int order;
+    boolean[][] ifOpen,ifBoom,ifFlag;//是否打开、是否是雷、是否有旗
+    boolean isFirst;//是否是第一次点击
+    int column,row;//行列
+    int squareSize;//格子边长
+    int booms;//雷的数目
+    int order;//近邻级数
     int addHeight;
     int[][] count;
-    Color black,white,yellow,green;
+    Color black,white,yellow,green;//预设颜色
     Font myFont;
     //</editor-fold>
     
@@ -86,6 +84,22 @@ public class MinePanel extends JPanel implements Serializable{
                 }
             }
         }
+    }
+    
+    public void myReset(MinePanel savedPanel){
+        ifOpen=savedPanel.ifOpen;
+        ifBoom=savedPanel.ifBoom;
+        ifFlag=savedPanel.ifFlag;
+        count=savedPanel.count;
+        
+        isFirst=savedPanel.isFirst;
+        column=savedPanel.column;
+        row=savedPanel.row;
+        squareSize=savedPanel.squareSize;
+        booms=savedPanel.booms;
+        order=savedPanel.order;
+        addHeight=savedPanel.addHeight;
+        
     }
      
 }

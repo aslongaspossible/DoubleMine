@@ -19,19 +19,25 @@ public class MyFrame extends JFrame{
     int size;
     int booms;
     int addWidth,addHeight;
-    JMenuBar menuBar;
     MinePanel minePanel;
+    
+    JMenuBar menuBar;
     JMenu gameMenu;
-    JMenuItem newGame;
     JMenuItem setGame;
+    JMenuItem saveGame;
+    JMenuItem openGame;
+    
     MouseClick mouseClick;
     GameSetting settingListen;
+    GameSave saveListen;
+    GameOpen openListen;
     
     public MyFrame(){
+        super();
         myInit();
     }
     
-     private void myInit() {
+    private void myInit() {
         Container contentPane=getContentPane();
         addWidth=16;
         addHeight=62;
@@ -43,10 +49,11 @@ public class MyFrame extends JFrame{
         
         menuBar=new JMenuBar();
         gameMenu=new JMenu("开始");
-        newGame=new JMenuItem("新游戏");
+        saveGame=new JMenuItem("存档");
         setGame=new JMenuItem("自定义");
-        settingListen=new GameSetting();
-        gameMenu.add(newGame);
+        openGame=new JMenuItem("恢复存档");
+        gameMenu.add(saveGame);
+        gameMenu.add(openGame);
         gameMenu.add(setGame);
         menuBar.add(gameMenu);
         setJMenuBar(menuBar);
@@ -59,11 +66,23 @@ public class MyFrame extends JFrame{
         mouseClick = new MouseClick();
         mouseClick.myInit(minePanel);
         
+        settingListen=new GameSetting();
         settingListen.myInit(this);
         setGame.addActionListener(settingListen);
         
+        saveListen=new GameSave();
+        saveListen.myInit(this);
+        saveGame.addActionListener(saveListen);
+        
+        openListen=new GameOpen();
+        openListen.myInit(this);
+        openGame.addActionListener(openListen);
     }
      
-     
+    public void myResize(int column,int row){
+        this.column=column;
+        this.row=row;
+        setSize(column*size+addWidth,row*size+addHeight);
+    }
      
 }
