@@ -107,8 +107,9 @@ public class MouseClick extends MouseAdapter{
                     myFrame.timeTrigger.stop();
                     JOptionPane.showMessageDialog(null, "You win!");
                 }else if(minePanel.count[thisy][thisx]==0){
-                    for(int y=thisy-1;y<=thisy+1;++y){
-                        for(int x=thisx-1;x<=thisx+1;++x){
+                    int order=minePanel.order;
+                    for(int y=thisy-order;y<=thisy+order;++y){
+                        for(int x=thisx-order;x<=thisx+order;++x){
                             if(y>=0 && x>=0 && x<column && y<row){
                                 if(!minePanel.ifOpen[y][x]){
                                     stackPoint.push(new MyPoint(x,y));

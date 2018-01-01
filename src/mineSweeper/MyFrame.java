@@ -77,6 +77,8 @@ public class MyFrame extends JFrame{
     
     public MyFrame(){
         super();
+        setTitle("次近邻扫雷");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         myInit();
     }
     
@@ -86,8 +88,8 @@ public class MyFrame extends JFrame{
         addHeight=62;
         column=15;
         row=10;
-        size=50;//can't be smaller than 5 because of line 39 in MinePanel
-        booms=30;
+        size=40;
+        booms=10;
         setSize(column*size+addWidth,row*size+addHeight);
         
         menuBar=new JMenuBar();
@@ -103,7 +105,7 @@ public class MyFrame extends JFrame{
         
         minePanel=new MinePanel();
         minePanel.setSize(column*size,row*size);
-        minePanel.initPanel(column,row,booms,size,1);
+        minePanel.initPanel(column,row,booms,size,2);
         contentPane.add(minePanel);
         
         mouseClick = new MouseClick();

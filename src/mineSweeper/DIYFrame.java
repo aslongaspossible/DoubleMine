@@ -19,6 +19,7 @@ public class DIYFrame extends javax.swing.JFrame {
     public DIYFrame() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setTitle("自定义");
     }
 
     /**

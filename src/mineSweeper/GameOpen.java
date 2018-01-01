@@ -31,6 +31,7 @@ public class GameOpen  implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e){
+        boolean isrunning=myFrame.timeTrigger.isRunning();
         myFrame.timeTrigger.stop();
         int returnVal=chooser.showOpenDialog(null);
         if(returnVal==JFileChooser.APPROVE_OPTION){
@@ -54,7 +55,9 @@ public class GameOpen  implements ActionListener{
                 System.out.println(exp);
             }
         }
-        myFrame.timeTrigger.start();
+        if(isrunning){
+            myFrame.timeTrigger.start();
+        }
     }
     
 }

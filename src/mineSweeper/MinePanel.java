@@ -38,7 +38,7 @@ public class MinePanel extends JPanel implements Serializable{
         white=new Color(240,240,240);
         yellow=new Color(240,240,100);
         green=new Color(50,240,100);
-        addHeight=40;
+        addHeight=0;
     }
     
     public void initPanel(int column,int row,int booms,int size,int order){
@@ -89,16 +89,16 @@ public class MinePanel extends JPanel implements Serializable{
                     g.fillRoundRect(squareSize*c, squareSize*r, squareSize-1, squareSize-1, squareSize/2, squareSize/2);
                     g.setColor(green);
                     if(ifBoom[r][c]){
-                        g.drawString(" *", squareSize*c, squareSize*r+addHeight);
+                        g.drawString(" *", squareSize*c, squareSize*r+squareSize*2/3+addHeight);
                     }else{
-                        g.drawString(count[r][c]+"", squareSize*c, squareSize*r+addHeight);
+                        g.drawString(count[r][c]+"", squareSize*c, squareSize*r+squareSize*2/3+addHeight);
                     }
                 }else{
                     g.setColor(black);
                     g.fillRoundRect(squareSize*c, squareSize*r, squareSize-1, squareSize-1, squareSize/2, squareSize/2);
                     if(ifFlag[r][c]){
                         g.setColor(white);
-                        g.drawString(" *", squareSize*c, squareSize*r+addHeight);
+                        g.drawString(" *", squareSize*c, squareSize*r+squareSize*2/3+addHeight);
                     }
                 }
             }
