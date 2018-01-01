@@ -47,6 +47,7 @@ public class GameOpen  implements ActionListener{
                 myFrame.boomsRemain.setText("还剩"+
                         (myFrame.minePanel.booms-myFrame.minePanel.flags)+"个雷");
                 s.close();
+                myFrame.timeTrigger.start();
             }catch(FileNotFoundException exp){
                 System.out.println(exp);
             }catch(IOException exp){
